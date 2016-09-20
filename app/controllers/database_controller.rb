@@ -1,6 +1,7 @@
 class DatabaseController < ApplicationController
 
   def index
+    @database_types = @current_application.database_types
     @database_calls = @current_application
       .database_calls
       .joins(:database_samples)

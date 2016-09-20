@@ -18,6 +18,8 @@ class OverviewController < ApplicationController
       .group("transaction_endpoints.id")
       .order("SUM(transaction_data.call_count * transaction_data.duration) DESC")
     @total_time_spent = @time_consuming_transactions.map(&:total_time_spent).sum
+
+    @traces = TransactionSampleDatum.where("trace_id is not null").limit(5)
   end
 
   private

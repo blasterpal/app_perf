@@ -50,5 +50,16 @@
       </tr>
     <% end %>
     </table>
+
+    <h4>Traces</h4>
+    <table>
+    <% @traces.each do |trace| %>
+      <tr>
+        <td>
+          <div><%= link_to trace.trace_id, application_transaction_sample_path(@current_application, trace.transaction_endpoint, trace) %></div>
+        </td>
+      </tr>
+    <% end %>
+    </table>
   </div>
 </div>

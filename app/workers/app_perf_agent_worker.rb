@@ -128,7 +128,7 @@ class AppPerfAgentWorker < ActiveJob::Base
 
   def process_database_data(data)
     if ["active_record", "sequel"].include?(data[:category])
-      name = "PostgreSQL"
+      name = data[:payload][:adapter] || "Database"
       database_type = application.database_types.where(:name => name).first_or_create
       application.database_calls.where(
         :name => data[:payload][:name],

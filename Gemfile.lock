@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/randy-girard/app_perf_ruby_agent.git
-  revision: 7da093082c27f1caa2f2fd778c0e78b90da2083b
+PATH
+  remote: ../app_perf_ruby_agent
   specs:
     app_perf_ruby_agent (0.0.1)
       activesupport
@@ -150,9 +149,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    passenger (5.0.28)
-      rack
-      rake (>= 0.8.1)
     pg (0.18.4)
     pkg-config (1.1.7)
     progressive_render (0.3.0)
@@ -297,9 +293,9 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
-  passenger
   pg
   progressive_render
+  puma
   rails (= 4.2.5.2)
   rspec-rails
   sass-rails (~> 5.0)

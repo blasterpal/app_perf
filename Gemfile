@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'foreman'
-gem 'passenger'
+gem 'puma'
 #gem 'newrelic_rpm'
 gem 'kaminari'
 gem "chartkick"
@@ -43,7 +43,8 @@ gem 'sinatra', :require => nil
 gem "sidekiq"
 gem "activerecord-import"
 gem "progressive_render"
-gem "app_perf_ruby_agent", :github => "randy-girard/app_perf_ruby_agent"
+#gem "app_perf_ruby_agent", :github => "randy-girard/app_perf_ruby_agent"
+gem "app_perf_ruby_agent", :path => "../app_perf_ruby_agent"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519134740) do
+ActiveRecord::Schema.define(version: 20160917212236) do
 
   create_table "analytic_event_data", force: :cascade do |t|
     t.integer  "application_id"
@@ -152,11 +152,13 @@ ActiveRecord::Schema.define(version: 20160519134740) do
     t.string   "category"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "trace_id"
   end
 
   add_index "transaction_sample_data", ["application_id"], name: "index_transaction_sample_data_on_application_id"
   add_index "transaction_sample_data", ["grouping_type", "grouping_id"], name: "index_transaction_sample_data_on_grouping_type_and_grouping_id"
   add_index "transaction_sample_data", ["host_id"], name: "index_transaction_sample_data_on_host_id"
+  add_index "transaction_sample_data", ["trace_id"], name: "index_transaction_sample_data_on_trace_id"
   add_index "transaction_sample_data", ["transaction_endpoint_id"], name: "index_transaction_sample_data_on_transaction_endpoint_id"
 
   create_table "users", force: :cascade do |t|
