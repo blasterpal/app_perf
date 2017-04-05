@@ -29,7 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'foreman'
-gem 'passenger'
+gem 'puma'
+#gem 'passenger'
 #gem 'newrelic_rpm'
 gem 'kaminari'
 gem "chartkick"
@@ -48,7 +49,7 @@ gem "app_perf_rpm", :git => "https://github.com/randy-girard/app_perf_rpm", :bra
 gem 'faker'
 gem "activeuuid"
 gem "oj"
-
+#gem 'rails_12factor', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'sqlite3'
   gem 'pry'
+  gem 'pry-remote'
 end
 
 group :development do

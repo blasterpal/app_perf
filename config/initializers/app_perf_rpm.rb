@@ -1,3 +1,5 @@
+require 'net/http' #for some reason this isn't loaded 
+
 require 'app_perf_rpm'
 
 AppPerfRpm.configure do |rpm|
