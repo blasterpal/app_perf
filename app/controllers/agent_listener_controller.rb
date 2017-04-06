@@ -9,6 +9,8 @@ class AgentListenerController < ApplicationController
   def create
     params.permit!
 
+    Rails.logger.debug({params: params, body: request.body.read})
+
     AppPerfAgentWorker.perform_later(params, request.body.read)
 
     render :text => "", :status => :ok

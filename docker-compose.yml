@@ -18,8 +18,4 @@ services:
     network_mode: "host"
     env_file:
       - ./.docker.env
-    ports: 
-      - 5000:5000   
-
-
 

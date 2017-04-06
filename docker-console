@@ -1,0 +1,2 @@
+#!/bin/bash 
+docker run --net=host --env-file ./.docker.env -it primerevenue-docker.jfrog.io/app_perf:0.0.1 bash

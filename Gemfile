@@ -45,11 +45,18 @@ gem "sidekiq"
 gem "sucker_punch"
 gem "activerecord-import"
 gem "progressive_render"
-gem "app_perf_rpm", :git => "https://github.com/randy-girard/app_perf_rpm", :branch => "master"
 gem 'faker'
 gem "activeuuid"
 gem "oj"
-#gem 'rails_12factor', group: :production
+gem 'rails_12factor'
+
+group :development, :production do 
+  #gem "app_perf_rpm", :git => "https://github.com/randy-girard/app_perf_rpm", :branch => "master"
+  gem "app_perf_rpm", :git => "https://github.com/blasterpal/app_perf_rpm", :branch => "add_agent_disable"
+  #gem "app_perf_rpm", path: "../app_perf_rpm"
+end
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
