@@ -31,3 +31,4 @@ node_modules
 
 /public/assets/*
 .docker.env
+web.log
