@@ -27,9 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 gem 'foreman'
-gem 'puma'
+#gem 'puma'
 #gem 'passenger'
 #gem 'newrelic_rpm'
 gem 'kaminari'
@@ -40,8 +40,10 @@ gem "pg"
 gem 'foundation-rails'
 gem "font-awesome-rails"
 gem "highcharts-rails"
+gem "redis-namespace"
 gem 'sinatra', :require => nil
 gem "sidekiq"
+gem 'sidekiq-failures'
 gem "sucker_punch"
 gem "activerecord-import"
 gem "progressive_render"
@@ -81,7 +83,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-sidekiq'
-  gem 'capistrano3-puma'
+  #gem 'capistrano3-puma'
   gem 'capistrano-faster-assets', '~> 1.0'
 end
 

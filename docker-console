@@ -1,2 +1,2 @@
 #!/bin/bash 
-docker run --net=host --env-file ./.docker.env -it primerevenue-docker.jfrog.io/app_perf:0.0.1 bash
+docker run --net=host --env-file ./.docker.env -v /Users/hbeaver/code/vendor/app_perf:/app2 -it primerevenue-docker.jfrog.io/app_perf:0.0.1 bash

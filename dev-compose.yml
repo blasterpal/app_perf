@@ -1,0 +1,68 @@
+version: '2'
+services:
+
+  app_perf_web:
+    container_name: 'app_perf_web'
+    #image: primerevenue-docker.jfrog.io/app_perf:0.0.1
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile.dev'
+    command: 'bundle exec foreman start web'
+    depends_on:
+      - proxy
+    env_file:
+      - ./.docker-4-mac.env
+    expose:
+      - 5000
+    labels:
+      - "traefik.backend=app_perf_web"
+      - "traefik.frontend.rule=Host:app_perf.primerev.dev"
+    links:
+      - proxy:proxy
+    extra_hosts:
+      - "app-perf:app_perf_web" 
+    networks:
+      - web
+    volumes:
+      - ~/code/vendor/app_perf:/app
+    working_dir: '/app'
+
+
+  app_perf_worker: 
+    container_name: 'app_perf_worker'
+    #image: primerevenue-docker.jfrog.io/app_perf:0.0.1
+    build:
+      context: '.'
+      dockerfile: 'Dockerfile.dev'
+    command: 'bundle exec foreman start worker'
+    depends_on:
+      - proxy
+    env_file:
+      - ./.docker-4-mac.env
+    links:
+      - app_perf_web:app-perf
+      - proxy:proxy
+    networks:
+      - web
+    volumes:
+      - ~/code/vendor/app_perf:/app
+    working_dir: '/app'
+
+  proxy:
+    container_name: "traefik"
+    image: traefik
+    command: --web --docker --docker.domain=primerev.com --logLevel=DEBUG
+    networks:
+      - web
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+
+networks:
+  web:
+    driver: bridge
+
+

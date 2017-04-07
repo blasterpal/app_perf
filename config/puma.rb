@@ -13,9 +13,9 @@ environment ENV['RACK_ENV'] || 'development'
 
 if /true/i.match(ENV['DOCKER'])
   daemonize false
+else
+  stdout_redirect './log/puma.stdout.log', './log/puma.stderr.log', true
 end
-
-stdout_redirect './log/puma.stdout.log', './log/puma.stderr.log', true
 
 pidfile './tmp/pids/puma.pid'
 state_path './tmp/pids/puma.state'

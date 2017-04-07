@@ -1,0 +1,44 @@
+FROM primerevenue-docker.jfrog.io/ubuntu-14.04-base:1
+FROM ruby:2.1.2
+
+# get Gem and app specific libs installed 
+RUN apt-get update -qq && apt-get install -y build-essential \
+    libpq-dev \
+    libqt4-dev \
+    libqt4-webkit \
+    libreadline-dev \
+    libssl-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    nodejs \
+    nodejs-legacy \
+    npm \
+    vim \
+    xvfb \
+    zlib1g-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+# Phantom JS
+RUN npm install -g phantomjs
+
+RUN apt-get clean
+
+# This docker file is not wholly meant for Prod. It is firstly designed for SOA Development of all apps
+# Must use root for local OSX dev for now. will replace with NFS/SMB later?
+#
+USER root
+ENV DEPLOY_HOME /root
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+
+## http://blog.carbonfiv2e.com/2015/03/17/docker-rails-docker-compose-together-in-your-development-workflow
+WORKDIR /tmp
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
+
+
+WORKDIR $APP_HOME
+
+# override in compose
+CMD ["foreman start web"]
